@@ -10,10 +10,11 @@ function AddPuppyForm () {
   const [ imageUrl, setImageUrl ] = useState ('')
   const [ successMsg, setSuccessMsg ] = useState ('')
 
+  const navigate = useNavigate()
+  
   async function handleSubmit(evt) {
     evt.preventDefault() // prevents default behavior of the form
     let API = 'https://fsa-puppy-bowl.herokuapp.com/api/2309-FTB-ET-WEB-FT/'
-    const navigate = useNavigate()
 
     try {
       const { data: json } = await axios.post(`${API}/players`, {
@@ -27,7 +28,7 @@ function AddPuppyForm () {
         setSuccessMsg ('There was an error in adding new player')
       }
 
-      
+      navigate ('/')
     }
     catch(err){
       console.error (err.message)
